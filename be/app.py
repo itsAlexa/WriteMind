@@ -1,7 +1,7 @@
 import sys
 # add src to path
 sys.path.insert(0, "src/") 
-
+import re
 from fastapi import FastAPI
 from model import SemanticAnalysisReq
 from fastapi.middleware.cors import CORSMiddleware
@@ -40,9 +40,18 @@ async def sentiment(req: SemanticAnalysisReq):
     )
     watson_nlp_client.set_service_url(os.environ.get('WATSON_BASE_URL'))
     res = watson_nlp_client.analyze(
-        text = req.text,
+        text = remove_html_tags(req.text),
         features = Features(
             emotion=EmotionOptions(document=True)
         )
     ).get_result().get('emotion').get('document').get('emotion')
     return res
+
+def remove_html_tags(text):
+    # Define the regular expression pattern for HTML tags
+    pattern = re.compile(r'<.*?>')
+    
+    # Use the sub() function to replace HTML tags with an empty string
+    cleaned_text = re.sub(pattern, '', text)
+    
+    return cleaned_text
