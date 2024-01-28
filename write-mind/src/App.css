@@ -1,42 +1,36 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
+.prompt-container {
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+  font-size: 2em;
+  letter-spacing: 1.5px;
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.text-container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.ql-container .ql-editor {
+  height: 50vh;
+  font-size: 1.2em;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.ql-container {
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }

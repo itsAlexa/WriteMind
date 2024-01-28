@@ -1,0 +1,54 @@
+.navbar-container {
+    position: relative;
+    top: 0;
+    background: rgb(181, 195, 242);
+    box-shadow: 0rem 0.2rem 1rem rgb(153, 153, 153);
+    width: 100vw;
+    padding: 1em 3em 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo-container {
+    margin: 0;
+}
+
+.menu-container {
+    padding-right: 7em;
+    display: flex;
+    justify-content: space-around;
+    gap: 2em;
+}
+
+p {
+    margin: 0;
+}
+
+.logo {
+    bottom: 0;
+    height: 8em;
+    margin: 0;
+}
+
+.jukebox-button, .archive-button, .mute-button {
+    border: 3px solid transparent;
+    border-color: black;
+    border-radius: 0.5em;
+    box-shadow: 5px 5px rgb(77, 54, 192);
+    padding: 0.8em 2em;
+    background-color: white;
+    font-family: 'Fira Code', monospace;
+    font-size: 1em;
+    letter-spacing: 1.5px;
+}
+
+.mute-button svg {
+    font-size: 1.5em;
+    color: #4d36c0;
+}
+
+.jukebox-button:hover, .archive-button:hover, .mute-button:hover {
+    background-color: rgb(255, 240, 254);
+}

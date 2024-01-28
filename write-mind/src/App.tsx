@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBar from "./components/navBar/NavBar";
+import Prompt from "./components/prompt/prompt";
 import Editor from "./components/editor/Editor";
 import periodicallyCallSentimentApi from "./hooks/SentimentAnalysis";
 import playBackgroundMusic from "./hooks/BackGroundMusic";
@@ -74,7 +77,18 @@ function App() {
 
   return (
     <>
-      <Editor textRef={editorText}/>
+      <BrowserRouter>
+        <NavBar>
+          <Routes>
+              <Route path="/">
+              </Route>
+              <Route path="/">
+              </Route>
+          </Routes>
+        </NavBar>
+      </BrowserRouter>
+      <Prompt></Prompt>
+      <Editor textRef={editorText} />
       <audio autoplay={true} ref={music} src={defaultSong} />
     </>
   )
