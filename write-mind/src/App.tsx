@@ -1,22 +1,14 @@
-import { useEffect, useRef } from "react";
-import Editor from "./components/editor/Editor";
-import periodicallyCallSentimentApi from "./hooks/SentimentAnalysis";
+import React from 'react';
+import AudioPlayer from './components/music/AudioPlayer';
 
-function App() {
-  const editorText = useRef('');
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <h1>Mood-Based Background Music</h1>
+      <AudioPlayer />
+      {/* Add other components as needed */}
+    </div>
+  );
+};
 
-  // useEffect(() => {
-  //   if (quill) {
-  //     quill.on('text-change', (e) => {
-  //       const text = quill.getText();
-  //       console.log(text);
-  //     });
-  //   }
-  // }, [quill]);
-
-  useEffect(periodicallyCallSentimentApi(editorText), []);
-
-  return <Editor textRef={editorText}/>
-}
-
-export default App
+export default App;
