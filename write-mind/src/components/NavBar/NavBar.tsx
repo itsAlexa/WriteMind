@@ -3,7 +3,7 @@ import writemindLogo from '/public/writemind.svg'
 import './NavBar.css'
 import { FaVolumeMute } from "react-icons/fa";
 
-function NavBar() {
+function NavBar(props: any) {
     return (
       <>
       <nav className="navbar-container">
@@ -15,7 +15,7 @@ function NavBar() {
           <button className="archive-button">
             <NavLink to="/">Archive</NavLink>
           </button>
-          <button className="mute-button">
+          <button className="mute-button" onClick={props.playDefaultAudio}>
             <FaVolumeMute></FaVolumeMute>
           </button>
         </div>

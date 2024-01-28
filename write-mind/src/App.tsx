@@ -79,7 +79,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar>
+        <NavBar playDefaultAudio={playDefaultMusic}>
           <Routes>
               <Route path="/">
               </Route>
