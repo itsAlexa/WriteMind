@@ -1,8 +1,12 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar/NavBar';
+import Prompt from './components/Prompt/prompt';
+import Editor from './components/editor/Editor';
+import { useRef } from 'react';
 
 function App() {
+  const editorText = useRef('');
 
   return (
     <>
@@ -16,9 +20,8 @@ function App() {
         </Routes>
       </NavBar>
     </BrowserRouter>
-    <div>
-      <h1>"Writing Prompt."</h1>
-    </div>
+    <Prompt></Prompt>
+    <Editor textRef={editorText} />
     </>
   )
 }

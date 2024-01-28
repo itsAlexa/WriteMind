@@ -33,10 +33,18 @@
   }
 } */
 
-.card {
+.prompt-container {
+  font-family: 'Fira Code', monospace;
+  font-size: 2em;
+  letter-spacing: 1.5px;
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+.text-container {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.ql-container .ql-editor {
+  height: 50vh;
 }
