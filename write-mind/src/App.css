@@ -35,6 +35,7 @@
 
 .prompt-container {
   font-family: 'Fira Code', monospace;
+  font-weight: 500;
   font-size: 2em;
   letter-spacing: 1.5px;
   padding: 2em;
@@ -47,4 +48,17 @@
 
 .ql-container .ql-editor {
   height: 50vh;
+  font-size: 1.2em;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.ql-container {
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }

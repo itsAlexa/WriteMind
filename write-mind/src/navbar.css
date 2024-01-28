@@ -32,14 +32,23 @@ p {
     margin: 0;
 }
 
-.jukebox-button, .archive-button {
+.jukebox-button, .archive-button, .mute-button {
     border: 3px solid transparent;
     border-color: black;
     border-radius: 0.5em;
-    box-shadow: 5px 5px teal;
+    box-shadow: 5px 5px rgb(77, 54, 192);
     padding: 0.8em 2em;
     background-color: white;
     font-family: 'Fira Code', monospace;
     font-size: 1em;
     letter-spacing: 1.5px;
+}
+
+.mute-button svg {
+    font-size: 1.5em;
+    color: #4d36c0;
+}
+
+.jukebox-button:hover, .archive-button:hover, .mute-button:hover {
+    background-color: rgb(255, 240, 254);
 }
