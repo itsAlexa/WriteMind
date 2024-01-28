@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import Editor from "./components/editor/Editor";
-import { sentimentObject } from "./types/sentiment/Sentiment";
 import periodicallyCallSentimentApi from "./hooks/SentimentAnalysis";
 import playBackgroundMusic from "./hooks/BackGroundMusic";
-import song from './music/lofi.mp3'
+import defaultSong from './music/default.mp3'
 
 function App() {
   const editorText = useRef('');
   const music = useRef(null);
-  const [isMusicFading, setisMusicFading] = useState(false);
   const [textSentiment, setTextSentiment] = useState(undefined)
 
   const playDefaultMusic = () => {
@@ -17,50 +15,56 @@ function App() {
     }
   };
 
-  const pauseMusic = () => {
-    if (music.current) {
-      music.current.pause();
-    }
-  };
-
     // hook to enable fading out of music on change
     const changeMusicSource = (source) => {
       if (music.current) {
-        setisMusicFading(true);
-  
-        const fadeOutDuration = 1000; // 1 second fade-out duration
-  
-        const fadeOut = () => {
-          const currentVolume = music.current.volume;
-          const volumeStep = currentVolume / (fadeOutDuration / 20); // Adjust the step size for smoother fading
-  
-          if (currentVolume > volumeStep) {
-            music.current.volume -= volumeStep;
-            setTimeout(fadeOut, 20); // Adjust the interval for smoother fading
+        const fadeOutDuration = 2000; // 1 second fade-out duration
+        const initialVolume = music.current.volume;
+
+        music.current.volume = initialVolume;
+
+        const fadeOutInterval = setInterval(() => {
+          if (music.current.volume > 0.05) {
+            music.current.volume -= 0.05; // Adjust the step size for smoother fading
           } else {
+            clearInterval(fadeOutInterval);
             music.current.pause();
-            music.current.volume = 1;
-            music.current.currentTime = 0;
-  
+            music.current.volume = initialVolume;
             music.current.src = source;
             music.current.load();
-  
-            music.current.addEventListener('canplaythrough', () => {
-              music.current.play();
-              setisMusicFading(false);
-            });
+            music.current.play();
+
+            const fadeInInterval = setInterval(() => {
+              if (music.current.volume < 0.95) {
+                music.current.volume += 0.05; // Adjust the step size for smoother fading
+              } else {
+                clearInterval(fadeInInterval);
+              }
+            }, fadeOutDuration / 20); // Adjust the interval for smoother fading
           }
-        };
-  
-        fadeOut();
+        }, fadeOutDuration / 20); // Adjust the interval for smoother fading
       }
     };
-  
+
+  // hook to enable auto replay if the music ends
   useEffect(() => {
-    if (isMusicFading) {
-      pauseMusic();
+    const handleEnded = () => {
+      if (music.current) {
+        music.current.currentTime = 0;
+        music.current.play();
+      }
+    };
+
+    if (music.current) {
+      music.current.addEventListener('ended', handleEnded);
     }
-  }, [isMusicFading]);
+
+    return () => {
+      if (music.current) {
+        music.current.removeEventListener('ended', handleEnded);
+      }
+    };
+  }, [music]);
 
   // hook to call the sentiment analysis api and update text sentiment
   useEffect(periodicallyCallSentimentApi(editorText, setTextSentiment), []);
@@ -71,7 +75,7 @@ function App() {
   return (
     <>
       <Editor textRef={editorText}/>
-      <audio autoplay={true} ref={music} src={song} />
+      <audio autoplay={true} ref={music} src={defaultSong} />
     </>
   )
 }

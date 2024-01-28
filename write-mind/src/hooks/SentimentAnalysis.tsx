@@ -32,9 +32,11 @@ function periodicallyCallSentimentApi(textRef: MutableRefObject<string>,  setSen
             // console.log(textRef.current);
             if (textRef.current && textRef.current !== prevText) {
                 prevText = textRef.current;
-                const res = await callSentimentApi(textRef.current)
-                // console.log(res);
-                setSentiment(res);
+                try {
+                    const res = await callSentimentApi(textRef.current)
+                    // console.log(res);
+                    setSentiment(res);
+                } catch (err) {}  // ignore
             }
         };
 
