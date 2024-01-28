@@ -1,17 +1,18 @@
 import { NavLink } from "react-router-dom";
+import writemindLogo from '/public/writemind.svg'
 import '/src/navbar.css'
 
 function NavBar() {
     return (
       <nav className="navbar-container">
-        <div className="logo-container">
-          <p>Logo</p>
-        </div>
+        <img src={writemindLogo} className="logo" alt="WriteMind Logo" />
         <div className="menu-container">
-          <NavLink to="/">
-            Jukebox
-          </NavLink>
-          <NavLink to="/">Archive</NavLink>
+          <button className="jukebox-button">
+            <NavLink to="/">Jukebox</NavLink>
+          </button>
+          <button className="archive-button">
+            <NavLink to="/">Archive</NavLink>
+          </button>
         </div>
       </nav>
     );
