@@ -6,6 +6,7 @@ import Editor from "./components/editor/Editor";
 import periodicallyCallSentimentApi from "./hooks/SentimentAnalysis";
 import playBackgroundMusic from "./hooks/BackGroundMusic";
 import defaultSong from './music/default.mp3'
+import './App.css'
 
 function App() {
   const editorText = useRef('');

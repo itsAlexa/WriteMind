@@ -16,6 +16,7 @@
 .text-container {
   width: 80vw;
   margin: 0 auto;
+  max-width: 80vw;
 }
 
 .ql-container .ql-editor {
@@ -23,6 +24,7 @@
   font-size: 1.2em;
   font-family: 'Lato', sans-serif;
   letter-spacing: 1.5px;
+  max-width: 80vw;
 }
 
 .ql-container {
